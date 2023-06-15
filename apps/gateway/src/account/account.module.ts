@@ -14,7 +14,6 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
             clientId: 'account',
             brokers: ['localhost:8097', 'localhost:8098', 'localhost:8099'],
           },
-          producerOnlyMode: true,
           consumer: {
             groupId: 'account-consumer',
           },
