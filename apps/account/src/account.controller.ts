@@ -1,12 +1,14 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, ParseIntPipe } from '@nestjs/common';
 import { AccountService } from './account.service';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 
 @Controller()
 export class AccountController {
   constructor(private readonly accountService: AccountService) {}
 
-  @Get()
-  getHello(): string {
-    return this.accountService.getHello();
+  @MessagePattern('get_account')
+  getAccount(@Payload() payload: any) {
+    console.log(payload.value);
+    return { repo: 'account', data: payload.value };
   }
 }
